@@ -1,0 +1,241 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@700;900&display=swap');
+
+:root {
+  --bg: #0a0a1a;
+  --bg2: #111128;
+  --panel: #13132a;
+  --border: #1e1e4a;
+  --accent: #e94560;
+  --accent2: #0f3460;
+  --text: #e0e0f0;
+  --muted: #7070a0;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Share Tech Mono', monospace;
+  min-height: 100vh;
+}
+
+.app-wrapper {
+  background:
+    radial-gradient(ellipse 80% 50% at 20% 20%, rgba(15, 52, 96, 0.3) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(233, 69, 96, 0.15) 0%, transparent 50%),
+    var(--bg);
+  min-height: 100vh;
+}
+
+/* Header */
+.title-badge {
+  display: inline-block;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  padding: 4px 14px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+.display-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(3rem, 8vw, 5.5rem);
+  font-weight: 900;
+  color: var(--text);
+  letter-spacing: -0.02em;
+  margin: 0;
+  line-height: 1;
+}
+
+.n-value {
+  color: var(--accent);
+  text-shadow: 0 0 30px rgba(233, 69, 96, 0.5);
+  transition: all 0.2s;
+}
+
+.subtitle {
+  font-family: 'Share Tech Mono', monospace;
+  color: var(--muted);
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  margin-top: 8px;
+}
+
+/* Panel */
+.card-panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 28px;
+  position: relative;
+}
+
+.card-panel::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+}
+
+.panel-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+
+.field-label {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+/* Range slider */
+.form-range::-webkit-slider-thumb {
+  background: var(--accent);
+}
+.form-range::-webkit-slider-runnable-track {
+  background: var(--border);
+}
+
+/* N select */
+.n-select {
+  width: 110px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.85rem;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+.n-select:focus {
+  background: var(--bg2);
+  border-color: var(--accent);
+  color: var(--text);
+  box-shadow: 0 0 0 2px rgba(233, 69, 96, 0.2);
+}
+
+/* Mode toggle */
+.mode-toggle {
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.mode-btn {
+  flex: 1;
+  padding: 10px;
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.15s;
+  letter-spacing: 0.05em;
+}
+.mode-btn:first-child { border-right: 1px solid var(--border); }
+.mode-btn.active {
+  background: var(--accent);
+  color: #fff;
+}
+.mode-btn:hover:not(.active) {
+  background: rgba(233, 69, 96, 0.1);
+  color: var(--text);
+}
+
+/* Textareas */
+.cipher-textarea {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.9rem;
+  border-radius: 3px;
+  resize: vertical;
+  transition: border-color 0.15s;
+}
+.cipher-textarea:focus {
+  background: var(--bg);
+  border-color: var(--accent);
+  color: var(--text);
+  box-shadow: 0 0 0 2px rgba(233, 69, 96, 0.15);
+}
+.cipher-textarea.output {
+  background: rgba(15, 52, 96, 0.2);
+  border-color: #0f3460;
+  color: #88aaff;
+  cursor: default;
+}
+
+.hint-text {
+  color: var(--muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+}
+
+/* Wheel */
+.wheel-container canvas {
+  filter: drop-shadow(0 0 20px rgba(233, 69, 96, 0.3));
+}
+.legend-outer {
+  font-size: 0.72rem;
+  color: #e0e0e0;
+  letter-spacing: 0.05em;
+}
+.legend-inner {
+  font-size: 0.72rem;
+  color: var(--accent);
+  letter-spacing: 0.05em;
+}
+
+/* Mapping grid */
+.mapping-grid {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 12px;
+}
+.mapping-label {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.mapping-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+}
+.mapping-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 24px;
+}
+.map-plain {
+  font-size: 0.7rem;
+  color: #e0e0e0;
+  line-height: 1.2;
+}
+.map-arrow {
+  font-size: 0.5rem;
+  color: var(--muted);
+  line-height: 1;
+}
+.map-cipher {
+  font-size: 0.7rem;
+  color: var(--accent);
+  line-height: 1.2;
+}
