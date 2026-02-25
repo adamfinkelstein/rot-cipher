@@ -1,7 +1,6 @@
 import CipherWheels from "./CipherWheels";
-import { rotChar } from "./utils";
 
-export default function WheelPanel({ n, setN, decode }) {
+export default function WheelPanel({ n, setN, decode, toggleDecode }) {
   return (
     <div className="col-lg-5">
       <div className="card-panel h-100 d-flex flex-column align-items-center justify-content-center">
@@ -25,33 +24,32 @@ export default function WheelPanel({ n, setN, decode }) {
             >
               {Array.from({ length: 26 }, (_, i) => (
                 <option key={i} value={i}>
-                  ROT-{i}
+                  ROT {i}
                 </option>
               ))}
             </select>
           </div>
         </div>
 
-        <CipherWheels n={n} decode={decode} />
-
-        <div className="mapping-grid mt-3 w-100">
-          <div className="mapping-label">
-            {decode ? "Decode" : "Encode"} mapping (lower case only)
-          </div>
-          <div className="mapping-row">
-            {Array.from({ length: 26 }, (_, i) => {
-              const plain = String.fromCharCode(97 + i);
-              const cipher = rotChar(plain, n, decode);
-              return (
-                <div key={i} className="mapping-cell">
-                  <span className="map-plain">{plain}</span>
-                  <span className="map-arrow">↓</span>
-                  <span className="map-cipher">{cipher}</span>
-                </div>
-              );
-            })}
+        <div className="mb-4">
+          <label className="form-label field-label">Mode</label>
+          <div className="mode-toggle d-flex">
+            <button
+              className={"mode-btn" + (!decode ? " active" : "")}
+              onClick={() => toggleDecode()}
+            >
+              🔒 Encode
+            </button>
+            <button
+              className={"mode-btn" + (decode ? " active" : "")}
+              onClick={() => toggleDecode()}
+            >
+              🔓 Decode
+            </button>
           </div>
         </div>
+
+        <CipherWheels n={n} decode={decode} />
       </div>
     </div>
   );

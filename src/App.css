@@ -209,7 +209,7 @@ body {
 }
 .legend-inner {
   font-size: 0.72rem;
-  color: var(--accent);
+  color: #59de83;
   letter-spacing: 0.05em;
 }
 
@@ -250,6 +250,6 @@ body {
 }
 .map-cipher {
   font-size: 0.7rem;
-  color: var(--accent);
+  color: #59de83;
   line-height: 1.2;
 }

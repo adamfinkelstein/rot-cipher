@@ -9,10 +9,15 @@ export default function App() {
   const [inputText, setInputText] = useState(
     "Hello, World! The quick brown fox."
   );
-  const [n, setN] = useState(13);
+  const [n, setN] = useState(1);
   const [decode, setDecode] = useState(false);
 
   const output = processText(inputText, n, decode);
+
+  const toggleDecode = () => {
+    setInputText(output);
+    setDecode(!decode);
+  };
 
   return (
     <div className="app-wrapper">
@@ -20,7 +25,7 @@ export default function App() {
         <header className="text-center mb-5">
           {/* <div className="title-badge">CRYPTO TOOL</div> */}
           <h1 className="display-title">
-            ROT-<span className="n-value">{n}</span>
+            ROT<span className="n-value">&nbsp;{n}</span>
           </h1>
           <p className="subtitle">
             Caesar Cipher — Shift by {n} position{n !== 1 ? "s" : ""}
@@ -28,8 +33,14 @@ export default function App() {
         </header>
 
         <div className="row g-4 justify-content-center">
-          <WheelPanel n={n} setN={setN} decode={decode} />
+          <WheelPanel
+            n={n}
+            setN={setN}
+            decode={decode}
+            toggleDecode={toggleDecode}
+          />
           <ControlPanel
+            n={n}
             decode={decode}
             setDecode={setDecode}
             inputText={inputText}

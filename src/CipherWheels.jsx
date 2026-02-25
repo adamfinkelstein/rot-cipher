@@ -25,7 +25,7 @@ export default function CipherWheels({ n, decode }) {
     ctx.arc(cx, cy, outerR, 0, Math.PI * 2);
     ctx.fillStyle = "#1a1a2e";
     ctx.fill();
-    ctx.strokeStyle = "#e94560";
+    ctx.strokeStyle = "#ffffff";
     ctx.lineWidth = 2;
     ctx.stroke();
 
@@ -64,7 +64,7 @@ export default function CipherWheels({ n, decode }) {
       ctx.save();
       ctx.translate(x, y);
       ctx.rotate(angle + Math.PI / 2);
-      ctx.font = "bold 11px 'Courier New', monospace";
+      ctx.font = "16px 'Courier New', monospace";
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
       ctx.fillStyle = "#e0e0e0";
@@ -80,7 +80,7 @@ export default function CipherWheels({ n, decode }) {
       ctx.save();
       ctx.translate(x, y);
       ctx.rotate(angle + Math.PI / 2);
-      ctx.font = "bold 11px 'Courier New', monospace";
+      ctx.font = "14px 'Courier New', monospace";
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
       ctx.fillStyle = "#59de83";
@@ -97,7 +97,7 @@ export default function CipherWheels({ n, decode }) {
 
     // Triangle on outer ring at position of "a" (spins with outer ring)
     // "a" is at position i where (i + n) % 26 === 0, i.e. i = (26 - n) % 26
-    const aIndex = (26 - n) % 26;
+    const aIndex = n % 26;
     const aAngle = (aIndex / 26) * Math.PI * 2 - Math.PI / 2;
     const triR = outerTextR - 14; // just inside the outer letters
     const tx = cx + triR * Math.cos(aAngle);
@@ -106,8 +106,8 @@ export default function CipherWheels({ n, decode }) {
     // encode: tip points inward (toward center), color white
     // decode: tip points outward (toward outer ring), color green
     const triColor = decode ? "#59de83" : "#e0e0e0";
-    const tipY = decode ? -8 : 8;
-    const baseY = decode ? 2 : -2;
+    const tipY = decode ? -6 : 6;
+    const baseY = decode ? 4 : -4;
 
     ctx.save();
     ctx.translate(tx, ty);
