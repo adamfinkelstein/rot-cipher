@@ -13,7 +13,9 @@ export default function WheelPanel({ n, setN, decode }) {
             <input
               type="range"
               className="form-range flex-grow-1"
-              min={0} max={25} value={n}
+              min={0}
+              max={25}
+              value={n}
               onChange={(e) => setN(Number(e.target.value))}
             />
             <select
@@ -22,16 +24,20 @@ export default function WheelPanel({ n, setN, decode }) {
               onChange={(e) => setN(Number(e.target.value))}
             >
               {Array.from({ length: 26 }, (_, i) => (
-                <option key={i} value={i}>ROT-{i}</option>
+                <option key={i} value={i}>
+                  ROT-{i}
+                </option>
               ))}
             </select>
           </div>
         </div>
 
-        <CipherWheels n={n} />
+        <CipherWheels n={n} decode={decode} />
 
         <div className="mapping-grid mt-3 w-100">
-          <div className="mapping-label">{decode ? "Decode" : "Encode"} mapping (lower case only)</div>
+          <div className="mapping-label">
+            {decode ? "Decode" : "Encode"} mapping (lower case only)
+          </div>
           <div className="mapping-row">
             {Array.from({ length: 26 }, (_, i) => {
               const plain = String.fromCharCode(97 + i);

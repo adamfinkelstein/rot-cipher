@@ -1,7 +1,7 @@
 import { useRef, useEffect } from "react";
 import { ALPHA_LOW } from "./utils";
 
-export default function CipherWheels({ n }) {
+export default function CipherWheels({ n, decode }) {
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -34,23 +34,30 @@ export default function CipherWheels({ n }) {
     ctx.arc(cx, cy, innerR - 4, 0, Math.PI * 2);
     ctx.fillStyle = "#16213e";
     ctx.fill();
-    ctx.strokeStyle = "#0f3460";
+    ctx.strokeStyle = "#59de83";
     ctx.lineWidth = 2;
     ctx.stroke();
 
-    // Spoke lines
+    // Spoke lines (fixed)
     for (let i = 0; i < 26; i++) {
-      const angle = (i / 26) * Math.PI * 2 - Math.PI / 2;
+      const angle = ((i + 0.5) / 26) * Math.PI * 2 - Math.PI / 2;
       ctx.beginPath();
-      ctx.moveTo(cx + (innerR - 3) * Math.cos(angle), cy + (innerR - 3) * Math.sin(angle));
-      ctx.lineTo(cx + (outerR - 1) * Math.cos(angle), cy + (outerR - 1) * Math.sin(angle));
-      ctx.strokeStyle = "rgba(233, 69, 96, 0.15)";
+      ctx.moveTo(
+        cx + (innerR - 3) * Math.cos(angle),
+        cy + (innerR - 3) * Math.sin(angle)
+      );
+      ctx.lineTo(
+        cx + (outerR - 1) * Math.cos(angle),
+        cy + (outerR - 1) * Math.sin(angle)
+      );
+      ctx.strokeStyle = "rgba(230, 207, 210, 0.73)";
       ctx.lineWidth = 1;
       ctx.stroke();
     }
 
-    // Outer letters (plain A-Z)
+    // Outer letters — spin CW by n: letter at position i shows ALPHA_LOW[(i + n) % 26]
     for (let i = 0; i < 26; i++) {
+      const shifted = (i - n + 26) % 26;
       const angle = (i / 26) * Math.PI * 2 - Math.PI / 2;
       const x = cx + outerTextR * Math.cos(angle);
       const y = cy + outerTextR * Math.sin(angle);
@@ -61,13 +68,12 @@ export default function CipherWheels({ n }) {
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
       ctx.fillStyle = "#e0e0e0";
-      ctx.fillText(ALPHA_LOW[i], 0, 0);
+      ctx.fillText(ALPHA_LOW[shifted], 0, 0);
       ctx.restore();
     }
 
-    // Inner letters (rotated by n)
+    // Inner letters — fixed (a always at top)
     for (let i = 0; i < 26; i++) {
-      const shifted = (i + n) % 26;
       const angle = (i / 26) * Math.PI * 2 - Math.PI / 2;
       const x = cx + innerTextR * Math.cos(angle);
       const y = cy + innerTextR * Math.sin(angle);
@@ -77,35 +83,44 @@ export default function CipherWheels({ n }) {
       ctx.font = "bold 11px 'Courier New', monospace";
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
-      ctx.fillStyle = "#e94560";
-      ctx.fillText(ALPHA_LOW[shifted], 0, 0);
+      ctx.fillStyle = "#59de83";
+      ctx.fillText(ALPHA_LOW[i], 0, 0);
       ctx.restore();
     }
 
     // Center hub
     ctx.beginPath();
     ctx.arc(cx, cy, 22, 0, Math.PI * 2);
-    ctx.fillStyle = "#0f3460";
+    ctx.fillStyle = "#59de83";
     ctx.fill();
-    ctx.strokeStyle = "#e94560";
-    ctx.lineWidth = 1.5;
     ctx.stroke();
-    ctx.font = "bold 10px 'Courier New', monospace";
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-    ctx.fillStyle = "#e94560";
-    ctx.fillText("N=" + n, cx, cy);
 
-    // Pointer at top
+    // Triangle on outer ring at position of "a" (spins with outer ring)
+    // "a" is at position i where (i + n) % 26 === 0, i.e. i = (26 - n) % 26
+    const aIndex = (26 - n) % 26;
+    const aAngle = (aIndex / 26) * Math.PI * 2 - Math.PI / 2;
+    const triR = outerTextR - 14; // just inside the outer letters
+    const tx = cx + triR * Math.cos(aAngle);
+    const ty = cy + triR * Math.sin(aAngle);
+
+    // encode: tip points inward (toward center), color white
+    // decode: tip points outward (toward outer ring), color green
+    const triColor = decode ? "#59de83" : "#e0e0e0";
+    const tipY = decode ? -8 : 8;
+    const baseY = decode ? 2 : -2;
+
+    ctx.save();
+    ctx.translate(tx, ty);
+    ctx.rotate(aAngle + Math.PI / 2);
     ctx.beginPath();
-    ctx.moveTo(cx, cy - outerR - 12);
-    ctx.lineTo(cx - 7, cy - outerR);
-    ctx.lineTo(cx + 7, cy - outerR);
+    ctx.moveTo(0, tipY);
+    ctx.lineTo(-5, baseY);
+    ctx.lineTo(5, baseY);
     ctx.closePath();
-    ctx.fillStyle = "#e94560";
+    ctx.fillStyle = triColor;
     ctx.fill();
-
-  }, [n]);
+    ctx.restore();
+  }, [n, decode]);
 
   return (
     <div className="wheel-container d-flex flex-column align-items-center">

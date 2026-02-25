@@ -1,4 +1,10 @@
-export default function ControlPanel({ decode, setDecode, inputText, setInputText, output }) {
+export default function ControlPanel({
+  decode,
+  setDecode,
+  inputText,
+  setInputText,
+  output,
+}) {
   return (
     <div className="col-lg-5">
       <div className="card-panel">
@@ -10,11 +16,15 @@ export default function ControlPanel({ decode, setDecode, inputText, setInputTex
             <button
               className={"mode-btn" + (!decode ? " active" : "")}
               onClick={() => setDecode(false)}
-            >🔒 Encode</button>
+            >
+              🔒 Encode
+            </button>
             <button
               className={"mode-btn" + (decode ? " active" : "")}
               onClick={() => setDecode(true)}
-            >🔓 Decode</button>
+            >
+              🔓 Decode
+            </button>
           </div>
         </div>
 
@@ -29,7 +39,8 @@ export default function ControlPanel({ decode, setDecode, inputText, setInputTex
             spellCheck={false}
           />
           <small className="hint-text mt-1 d-block">
-            Only lowercase a–z will be shifted. All other characters pass through unchanged.
+            Only lowercase a–z will be shifted. All other characters pass
+            through unchanged.
           </small>
         </div>
 

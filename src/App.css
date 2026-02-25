@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@700;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@700;900&display=swap");
 
 :root {
   --bg: #0a0a1a;
@@ -11,19 +11,29 @@
   --muted: #7070a0;
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: 'Share Tech Mono', monospace;
+  font-family: "Share Tech Mono", monospace;
   min-height: 100vh;
 }
 
 .app-wrapper {
   background:
-    radial-gradient(ellipse 80% 50% at 20% 20%, rgba(15, 52, 96, 0.3) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(233, 69, 96, 0.15) 0%, transparent 50%),
+    radial-gradient(
+      ellipse 80% 50% at 20% 20%,
+      rgba(15, 52, 96, 0.3) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 60% 40% at 80% 80%,
+      rgba(233, 69, 96, 0.15) 0%,
+      transparent 50%
+    ),
     var(--bg);
   min-height: 100vh;
 }
@@ -31,7 +41,7 @@ body {
 /* Header */
 .title-badge {
   display: inline-block;
-  font-family: 'Share Tech Mono', monospace;
+  font-family: "Share Tech Mono", monospace;
   font-size: 0.7rem;
   letter-spacing: 0.2em;
   color: var(--accent);
@@ -42,7 +52,7 @@ body {
 }
 
 .display-title {
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
   font-size: clamp(3rem, 8vw, 5.5rem);
   font-weight: 900;
   color: var(--text);
@@ -58,7 +68,7 @@ body {
 }
 
 .subtitle {
-  font-family: 'Share Tech Mono', monospace;
+  font-family: "Share Tech Mono", monospace;
   color: var(--muted);
   font-size: 0.9rem;
   letter-spacing: 0.1em;
@@ -75,15 +85,17 @@ body {
 }
 
 .card-panel::before {
-  content: '';
+  content: "";
   position: absolute;
-  top: 0; left: 0; right: 0;
+  top: 0;
+  left: 0;
+  right: 0;
   height: 2px;
   background: linear-gradient(90deg, var(--accent), transparent);
 }
 
 .panel-title {
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
   font-size: 0.75rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
@@ -92,7 +104,7 @@ body {
 }
 
 .field-label {
-  font-family: 'Share Tech Mono', monospace;
+  font-family: "Share Tech Mono", monospace;
   font-size: 0.75rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -114,7 +126,7 @@ body {
   background: var(--bg2);
   border: 1px solid var(--border);
   color: var(--text);
-  font-family: 'Share Tech Mono', monospace;
+  font-family: "Share Tech Mono", monospace;
   font-size: 0.85rem;
   border-radius: 3px;
   flex-shrink: 0;
@@ -138,13 +150,15 @@ body {
   background: transparent;
   border: none;
   color: var(--muted);
-  font-family: 'Share Tech Mono', monospace;
+  font-family: "Share Tech Mono", monospace;
   font-size: 0.85rem;
   cursor: pointer;
   transition: all 0.15s;
   letter-spacing: 0.05em;
 }
-.mode-btn:first-child { border-right: 1px solid var(--border); }
+.mode-btn:first-child {
+  border-right: 1px solid var(--border);
+}
 .mode-btn.active {
   background: var(--accent);
   color: #fff;
@@ -159,7 +173,7 @@ body {
   background: var(--bg);
   border: 1px solid var(--border);
   color: var(--text);
-  font-family: 'Share Tech Mono', monospace;
+  font-family: "Share Tech Mono", monospace;
   font-size: 0.9rem;
   border-radius: 3px;
   resize: vertical;

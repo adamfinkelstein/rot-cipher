@@ -10,5 +10,8 @@ export function rotChar(ch, n, decode) {
 }
 
 export function processText(text, n, decode) {
-  return text.split("").map((ch) => rotChar(ch, n, decode)).join("");
+  return text
+    .split("")
+    .map((ch) => rotChar(ch, n, decode))
+    .join("");
 }
