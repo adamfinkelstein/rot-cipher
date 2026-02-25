@@ -26,6 +26,13 @@ npm install
 npm run dev
 ```
 
+## Preview build locally as it will be at Github
+
+```bash
+npm run build    # compiles to the dist/ folder
+npm run preview  # serves dist/ locally, usually at http://localhost:4173
+```
+
 ## Deployment
 
 This project auto-deploys to GitHub Pages via GitHub Actions on every push to `main`.
