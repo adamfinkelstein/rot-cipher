@@ -239,17 +239,17 @@ body {
   width: 24px;
 }
 .map-plain {
-  font-size: 0.7rem;
+  font-size: 12pt;
   color: #e0e0e0;
   line-height: 1.2;
 }
 .map-arrow {
-  font-size: 0.5rem;
+  font-size: 10pt;
   color: var(--muted);
   line-height: 1;
 }
 .map-cipher {
-  font-size: 0.7rem;
+  font-size: 12pt;
   color: #59de83;
   line-height: 1.2;
 }

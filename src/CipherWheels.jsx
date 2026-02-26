@@ -1,5 +1,5 @@
 import { useRef, useEffect } from "react";
-import { ALPHA_LOW } from "./utils";
+import { ALPHABET } from "./utils";
 
 export default function CipherWheels({ n, decode }) {
   const canvasRef = useRef(null);
@@ -55,7 +55,7 @@ export default function CipherWheels({ n, decode }) {
       ctx.stroke();
     }
 
-    // Outer letters — spin CW by n: letter at position i shows ALPHA_LOW[(i + n) % 26]
+    // Outer letters — spin CW by n: letter at position i shows ALPHABET[(i + n) % 26]
     for (let i = 0; i < 26; i++) {
       const shifted = (i - n + 26) % 26;
       const angle = (i / 26) * Math.PI * 2 - Math.PI / 2;
@@ -68,7 +68,7 @@ export default function CipherWheels({ n, decode }) {
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
       ctx.fillStyle = "#e0e0e0";
-      ctx.fillText(ALPHA_LOW[shifted], 0, 0);
+      ctx.fillText(ALPHABET[shifted], 0, 0);
       ctx.restore();
     }
 
@@ -84,7 +84,7 @@ export default function CipherWheels({ n, decode }) {
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
       ctx.fillStyle = "#59de83";
-      ctx.fillText(ALPHA_LOW[i], 0, 0);
+      ctx.fillText(ALPHABET[i], 0, 0);
       ctx.restore();
     }
 

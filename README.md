@@ -9,7 +9,7 @@ An interactive ROT-N (Caesar cipher) illustration built with React, Bootstrap, a
 - Visual cipher wheel showing the rotation of letters
 - Adjustable N (0–25) via slider or dropdown
 - Encode / Decode toggle
-- Only lowercase a–z are shifted; all other characters pass through unchanged
+- Only uppercase A-Z are shifted; all other characters pass through unchanged
 - Character mapping table for all 26 letters
 
 ## Tech Stack

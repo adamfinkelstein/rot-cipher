@@ -7,7 +7,7 @@ import ControlPanel from "./ControlPanel";
 
 export default function App() {
   const [inputText, setInputText] = useState(
-    "Hello, World! The quick brown fox."
+    "HELLO WORLD! THE QUICK BROWN FOX."
   );
   const [n, setN] = useState(1);
   const [decode, setDecode] = useState(false);
@@ -42,7 +42,6 @@ export default function App() {
           <ControlPanel
             n={n}
             decode={decode}
-            setDecode={setDecode}
             inputText={inputText}
             setInputText={setInputText}
             output={output}

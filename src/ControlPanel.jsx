@@ -1,9 +1,8 @@
-import { rotChar } from "./utils";
+import { rotChar, aCode } from "./utils";
 
 export default function ControlPanel({
   n,
   decode,
-  setDecode,
   inputText,
   setInputText,
   output,
@@ -15,11 +14,11 @@ export default function ControlPanel({
 
         <div className="mapping-grid mt-3 w-100">
           <div className="mapping-label">
-            {decode ? "Decode" : "Encode"} mapping (lower case only)
+            {decode ? "Decode" : "Encode"} mapping (upper case only)
           </div>
           <div className="mapping-row">
             {Array.from({ length: 26 }, (_, i) => {
-              const plain = String.fromCharCode(97 + i);
+              const plain = String.fromCharCode(aCode + i);
               const cipher = rotChar(plain, n, decode);
               return (
                 <div key={i} className="mapping-cell">
@@ -43,7 +42,7 @@ export default function ControlPanel({
             spellCheck={false}
           />
           <small className="hint-text mt-1 d-block">
-            Only lowercase a–z will be shifted. All other characters pass
+            Only uppercase Z-Z will be shifted. All other characters pass
             through unchanged.
           </small>
         </div>
